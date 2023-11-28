@@ -102,7 +102,6 @@ def recv(sock, client):
     print('Thread recv() Start\n')
     while True:
         message = sock.recv(SIZE)
-        print(message)
         message = message.decode(FORMAT)
         command = message[:4]
         if command == "list":
@@ -118,7 +117,6 @@ def recv_file(sock, client):
 
     while True:
         data = sock.recv(SIZE)
-        print(data)
         if data == "<END>".encode():
             break
         file_data = file_data + data

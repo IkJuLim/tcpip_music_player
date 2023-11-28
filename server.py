@@ -9,9 +9,6 @@ print_lock = threading.Lock()
 def send(conn, message):
     print('Thread Send Start')
     command = message[:4]
-    print(message)
-    print(message[:4])
-    print(message[5:])
     if command == "list":
         send_list(conn)
     elif command == "play":
@@ -29,7 +26,7 @@ def recv(conn):
 
 
 def send_list(conn):
-    files = os.listdir("../../Desktop/music_dir")
+    files = os.listdir("./music_dir")
     cnt = 1
     message = "list|"
     for file in files:
@@ -39,7 +36,7 @@ def send_list(conn):
 
 
 def send_play(conn, music):
-    files = os.listdir("../../Desktop/music_dir")
+    files = os.listdir("./music_dir")
     filenames = []
     for file in files:
         filenames.append(os.path.splitext(os.path.basename(file))[0])
@@ -61,7 +58,6 @@ def send_play(conn, music):
                 break
             conn.send(data)
             msg = conn.recv(SIZE).decode()
-            print(msg)
     conn.send("<END>".encode(FORMAT))
     print("Done......")
     file.close()
