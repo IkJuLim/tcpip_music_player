@@ -1,0 +1,3 @@
+music_dir/**/
+__pycache__/
+../../Desktop/.idea/
