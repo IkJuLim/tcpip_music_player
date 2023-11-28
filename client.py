@@ -69,7 +69,7 @@ def next_cmd(sock, client):
 
 
 def send_play(sock, music):
-    sock.send(("play " + music).encode(FORMAT))
+    sock.send(("play|" + music).encode(FORMAT))
 
 
 def stop_cmd(client):
@@ -108,7 +108,7 @@ def recv(sock, client):
         if command == "list":
             print(message[5:])
         elif command == "play":
-            music = message[5:].split(" ")
+            music = message[5:].split("|")
             client.set_music(music[0], music[1], music[2])
             recv_file(sock, client)
 
