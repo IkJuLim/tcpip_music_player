@@ -117,7 +117,7 @@ def recv_file(sock, client):
 
     while True:
         data = sock.recv(SIZE)
-        if data == "<END>".encode():
+        if data[-5:] == "<END>".encode():
             break
         file_data = file_data + data
         sock.send("Data received".encode())
